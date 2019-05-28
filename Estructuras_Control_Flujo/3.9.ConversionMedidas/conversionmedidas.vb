@@ -38,9 +38,20 @@ Module conversionmedidas
                 Console.WriteLine("Pulgadas: " & numero * 36)
                 Console.WriteLine("CENTIMETROS: " & numero * 91.44)
                 Console.WriteLine("METROS: " & numero / 1.094)
-
             Case 4
+                ingresodatos(medidas.CENTIMETROS)
+                Console.WriteLine("PIE: " & numero / 30.48)
+                Console.WriteLine("YARDAS: " & numero / 91.44)
+                Console.WriteLine("PULGADAS: " & numero / 2.54)
+                Console.WriteLine("METROS: " & numero / 100)
             Case 5
+                ingresodatos(medidas.METROS)
+                Console.WriteLine("PIE: " & numero * 3.281)
+                Console.WriteLine("YARDAS: " & numero * 1.094)
+                Console.WriteLine("CENTIMETROS: " & numero * 100)
+                Console.WriteLine("PULGADAS: " & numero * 39.37)
+            Case Else
+                Console.WriteLine("El numero ingresado es INCORRECTO.")
 
         End Select
     End Sub
