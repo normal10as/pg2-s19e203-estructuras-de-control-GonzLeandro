@@ -1,22 +1,36 @@
 Imports System
 
 Module Program
+    Dim Cantidad As Integer
+    Dim Precio, PrecioSinDescuento, PrecioConDescuento, DescuentoTotal, SubTotal, Total As Single
     Sub Main(args As String())
-        Dim num As Integer = 2
-        Dim num_primo As Integer
-        Dim index As Integer = 0
-        Console.WriteLine("Numeros primos del 2 al 1000: ")
-        While num < 1000
-            For index = 1 To 1000
-                If num Mod index = 0 Then
-                    num_primo += 1
+        Do
+            Console.Write("Ingrese la cantidad del producto: ")
+            Cantidad = Console.ReadLine()
+            If Cantidad <> 0 Then
+                Console.Write("Ingrese el precio unitario del producto: ")
+                Precio = Console.ReadLine()
+                PrecioSinDescuento = Cantidad * Precio
+                SubTotal = SubTotal + PrecioSinDescuento
+                If Cantidad >= 10 And Cantidad <= 50 Then
+                    ResolverDescuentosTotales(PrecioSinDescuento, 0.05)
+                ElseIf Cantidad >= 51 And Cantidad <= 250 Then
+                    ResolverDescuentosTotales(PrecioSinDescuento, 0.1)
+                ElseIf Cantidad >= 251 Then
+                    ResolverDescuentosTotales(PrecioSinDescuento, 0.2)
+                Else
+                    Console.WriteLine("Precio sin descuento del producto: " & PrecioSinDescuento)
                 End If
-            Next
-            If num_primo = 2 Then
-                Console.WriteLine(num)
             End If
-            num_primo = 0
-            num += 1
-        End While
+        Loop While (Cantidad <> 0)
+        Console.WriteLine("El subtotal es: " & SubTotal)
+        Console.WriteLine("El total es: " & Total)
+        Console.WriteLine("La cantidad de pesos descontados es: " & DescuentoTotal)
+    End Sub
+    Sub ResolverDescuentosTotales(PrecioSinDescuento, descuento)
+        PrecioConDescuento = PrecioSinDescuento - (PrecioSinDescuento * descuento)
+        DescuentoTotal = DescuentoTotal + (PrecioSinDescuento - PrecioConDescuento)
+        Total = Total + PrecioConDescuento
+        Console.WriteLine("Precio sin descuento del producto: " & PrecioSinDescuento)
     End Sub
 End Module
