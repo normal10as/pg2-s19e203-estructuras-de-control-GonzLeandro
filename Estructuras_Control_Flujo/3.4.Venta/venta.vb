@@ -1,5 +1,4 @@
 Imports System
-
 Module venta
     Sub Main(args As String())
         Dim cantidad As Int16
