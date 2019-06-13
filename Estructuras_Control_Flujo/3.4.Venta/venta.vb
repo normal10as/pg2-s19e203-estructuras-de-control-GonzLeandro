@@ -15,17 +15,14 @@ Module venta
 
         If cantidad >= 10 And cantidad <= 50 Then
             total -= total * 0.05
-            Console.WriteLine("El precio total es: " & total)
+           
         ElseIf cantidad >= 51 And cantidad <= 250 Then
             total -= total * 0.1
-            Console.WriteLine("El precio total es: " & total)
         ElseIf cantidad >= 251 Then
             total -= total * 0.2
-            Console.WriteLine("El precio total es: " & total)
         Else
             total = (cantidad * precio)
-            Console.WriteLine("El precio total es: " & total)
         End If
-
+        Console.WriteLine("El precio total es: " & total)
     End Sub
 End Module
