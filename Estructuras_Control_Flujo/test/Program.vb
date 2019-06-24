@@ -1,36 +1,55 @@
-Imports System
-
-Module Program
-    Dim Cantidad As Integer
-    Dim Precio, PrecioSinDescuento, PrecioConDescuento, DescuentoTotal, SubTotal, Total As Single
+Module Operaciones
+    Enum Operaciones As Integer
+        suma = 1
+        resta
+        multiplicacion
+        division
+    End Enum
     Sub Main(args As String())
-        Do
-            Console.Write("Ingrese la cantidad del producto: ")
-            Cantidad = Console.ReadLine()
-            If Cantidad <> 0 Then
-                Console.Write("Ingrese el precio unitario del producto: ")
-                Precio = Console.ReadLine()
-                PrecioSinDescuento = Cantidad * Precio
-                SubTotal = SubTotal + PrecioSinDescuento
-                If Cantidad >= 10 And Cantidad <= 50 Then
-                    ResolverDescuentosTotales(PrecioSinDescuento, 0.05)
-                ElseIf Cantidad >= 51 And Cantidad <= 250 Then
-                    ResolverDescuentosTotales(PrecioSinDescuento, 0.1)
-                ElseIf Cantidad >= 251 Then
-                    ResolverDescuentosTotales(PrecioSinDescuento, 0.2)
-                Else
-                    Console.WriteLine("Precio sin descuento del producto: " & PrecioSinDescuento)
-                End If
-            End If
-        Loop While (Cantidad <> 0)
-        Console.WriteLine("El subtotal es: " & SubTotal)
-        Console.WriteLine("El total es: " & Total)
-        Console.WriteLine("La cantidad de pesos descontados es: " & DescuentoTotal)
+        Console.WriteLine(Calcular(Operaciones.suma, 5, 8))
+        Console.WriteLine(Calcular(Operaciones.suma, 5, 8, 7))
+        Console.WriteLine(Calcular(Operaciones.suma, 5, 8, 7, 1))
+        Console.WriteLine(Calcular(Operaciones.resta, 8, 5))
+        Console.WriteLine(Calcular(Operaciones.resta, 5, 4, 1))
+        Console.WriteLine(Calcular(Operaciones.resta, 10, 4, 1, 1))
+        Console.WriteLine(Calcular(Operaciones.multiplicacion, 2, 2))
+        Console.WriteLine(Calcular(Operaciones.multiplicacion, 2, 2, 2))
+        Console.WriteLine(Calcular(Operaciones.multiplicacion, 2, 2, 2, 2))
+        Console.WriteLine(Calcular(Operaciones.division, 10, 2))
+        Console.WriteLine(Calcular(Operaciones.division, 10, 2, 5))
+        Console.WriteLine(Calcular(Operaciones.division, 10, 1, 2, 1))
+        Console.WriteLine(Calcular(2, 1))
+        Console.WriteLine(Calcular(1, 2, 1))
+        Console.WriteLine(Calcular(10, 1, 2, 1))
     End Sub
-    Sub ResolverDescuentosTotales(PrecioSinDescuento, descuento)
-        PrecioConDescuento = PrecioSinDescuento - (PrecioSinDescuento * descuento)
-        DescuentoTotal = DescuentoTotal + (PrecioSinDescuento - PrecioConDescuento)
-        Total = Total + PrecioConDescuento
-        Console.WriteLine("Precio sin descuento del producto: " & PrecioSinDescuento)
-    End Sub
+
+    Function Calcular(elegir As Operaciones, num1 As Decimal, num2 As Integer) As Operaciones
+        Select Case elegir
+            Case Operaciones.suma
+                Return num1 + num2
+            Case Operaciones.resta
+                Return num1 - num2
+            Case Operaciones.multiplicacion
+                Return num1 * num2
+            Case Operaciones.division
+                Return num1 / num2
+        End Select
+        Return elegir
+    End Function
+    Function Calcular(elegir As Operaciones, num1 As Integer, num2 As Integer, num3 As Integer) As Operaciones
+        Return (Calcular(elegir, Calcular(elegir, num1, num2), num3))
+    End Function
+    Function Calcular(elegir As Operaciones, num1 As Integer, num2 As Integer, num3 As Integer, num4 As Integer) As Operaciones
+        Return Calcular(elegir, Calcular(elegir, num1, num2, num3), num4)
+    End Function
+
+    Function Calcular(num1, num2) As Integer
+        Return num1 + num2
+    End Function
+    Function Calcular(num1, num2, num3) As Integer
+        Return Calcular(num1, num2) + num3
+    End Function
+    Function Calcular(num1, num2, num3, num4) As Integer
+        Return Calcular(num1, num2) + Calcular(num3, num4)
+    End Function
 End Module

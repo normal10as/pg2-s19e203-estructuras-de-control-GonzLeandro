@@ -27,6 +27,7 @@ Module descuento
         Console.WriteLine("El total es: " & Total)
         Console.WriteLine("La cantidad de pesos descontados es: " & DescuentoTotal)
     End Sub
+
     Sub ResolverDescuentosTotales(PrecioSinDescuento, descuento)
         PrecioConDescuento = PrecioSinDescuento - (PrecioSinDescuento * descuento)
         DescuentoTotal = DescuentoTotal + (PrecioSinDescuento - PrecioConDescuento)
